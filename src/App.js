@@ -1,12 +1,12 @@
 import AllComments from './components/AllComments';
-import CommentsReplies from './components/CommentsReplies';
+import UserComments from './components/UserComments'
 import './App.css';
 
 function App() {
   return (
-    <div className="App desktop:bg-light-grayish-blue py-12 desktop:text-grayish-blue mobile:bg-soft-red">
+    <div className="App bg-light-grayish-blue py-5 text-grayish-blue">
       <AllComments />
-      <CommentsReplies />
+      <UserComments />
     </div>
   );
 }
