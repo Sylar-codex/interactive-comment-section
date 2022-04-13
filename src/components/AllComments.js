@@ -2,7 +2,7 @@ import React from 'react'
 import contents from '../data/contents'
 import Comment from './Comment'
 
-function allcomments() {
+function Allcomments() {
     return (
         <div>
             {contents.comments.map((comment) => (
@@ -16,9 +16,11 @@ function allcomments() {
                     username={comment.user.username}
                     replies={comment.replies}
                 />
+
             ))}
+
         </div>
     )
 }
 
-export default allcomments
+export default Allcomments

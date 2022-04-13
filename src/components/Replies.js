@@ -10,7 +10,8 @@ import moment from 'moment';
 
 function Replies(props) {
 
-    const replies = JSON.parse(localStorage.getItem("replies"))
+    const replies = localStorage.getItem("replies") === null ? [] : JSON.parse(localStorage.getItem('replies'))
+    //These are the states
 
     //These are the states
     const [score, setScore] = useState(props.score);
