@@ -81,7 +81,7 @@ function UserComments() {
 
                 <div>
                     {val.map((cont) => (
-                        <div>
+                        <div key={cont.id}>
                             <div className="align-middle bg-white mt-6 p-6 flex desktop:flex-row mobile:flex-col-reverse rounded-md desktop:mx-44 desktop:mr-64 mobile:mx-5 mobile:mr-4" key={cont.id}>
                                 <div className="bg-light-grayish-blue desktop:mt-0 mobile:mt-4 desktop:w-10 desktop:h-24 mobile:w-24 mobile:h-10 align-middle flex desktop:flex-col mobile:flex-row justify-center px-3 pr-5 py-3 rounded-md">
                                     <div className='desktop:w-2 desktop:mt-0 mobile:mt-1 h-auto mobile:min-w-fit obj hover:cursor-pointer' onClick={() => { addition() }}><img src={plus} alt="plus" /></div>
