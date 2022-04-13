@@ -10,10 +10,9 @@ import content from '../data/contents';
 import moment from 'moment';
 
 function Comment(props) {
-    console.log(props);
     const comments = localStorage.getItem("originalComment") === "null" ? [] : JSON.parse(localStorage.getItem('originalComment'))
     //These are the states
-    console.log('comm: ', comments);
+
 
     const [scores, setScores] = useState(props.score);
     const [reply, setReply] = useState(false);
