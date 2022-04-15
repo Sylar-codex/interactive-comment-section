@@ -10,13 +10,15 @@ import content from '../data/contents';
 import moment from 'moment';
 
 function Comment(props) {
-    const comments = localStorage.getItem("originalComment") === "null" ? [] : JSON.parse(localStorage.getItem('originalComment'))
+    //along the line this line of code didn't let my page show my contents. So i'll still try to review what went wrong 
+    //const comments = localStorage.getItem("originalComment") === "null" ? [] : JSON.parse(localStorage.getItem('originalComment'))
+
     //These are the states
 
 
     const [scores, setScores] = useState(props.score);
     const [reply, setReply] = useState(false);
-    const [val, setVal] = useState(comments);
+    const [val, setVal] = useState([]);
     const [scoree, setScoree] = useState(2);
     const [id, setId] = useState('');
     const [edit, setEdit] = useState(false);
