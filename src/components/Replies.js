@@ -9,14 +9,13 @@ import content from '../data/contents';
 import moment from 'moment';
 
 function Replies(props) {
-
-    const replies = localStorage.getItem("replies") === null ? [] : JSON.parse(localStorage.getItem('replies'))
-    //These are the states
+    //need to figure this out
+    //const replies = localStorage.getItem("replies") === null ? [] : JSON.parse(localStorage.getItem('replies'))
 
     //These are the states
     const [score, setScore] = useState(props.score);
     const [reply, setReply] = useState(false);
-    const [val, setVal] = useState(replies);
+    const [val, setVal] = useState([]);
     const [scoree, setScoree] = useState(2);
     const [id, setId] = useState('');
     const [Value, setValue] = useState('');
@@ -55,19 +54,23 @@ function Replies(props) {
 
     //Whenever the user reloads the page he can still view his replies or comment
     useEffect(() => {
-        const comment = localStorage.getItem('replies')
-        if (!comment) return
-        setVal(JSON.parse(comment))
+        const comment = JSON.parse(localStorage.getItem('replies'))
+        if (comment)
+            setVal(comment)
+
     }, [])
 
+
     useEffect(() => {
-        localStorage.setItem('replies', JSON.stringify(val))
+        if (val?.length)
+            localStorage.setItem('replies', JSON.stringify(val))
     });
 
     //This submits the forms
     const handleSubmit = (e) => {
         e.preventDefault()
         getContents()
+        setValue('')
         setEdit(false)
     }
     //This is used to add scores from the user scores

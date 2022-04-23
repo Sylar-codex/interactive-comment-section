@@ -59,6 +59,7 @@ function UserComments() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setValue('')
         getContents()
     }
 

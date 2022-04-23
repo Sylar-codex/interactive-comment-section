@@ -58,18 +58,21 @@ function Comment(props) {
 
     //Whenever the user reloads the page he can still view his replies or comment
     useEffect(() => {
-        const comment = localStorage.getItem('originalComment')
-        if (!comment) return
-        setVal(JSON.parse(comment))
+        const comment = JSON.parse(localStorage.getItem('originalComment'))
+        if (comment)
+            setVal(comment)
+
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('originalComment', JSON.stringify(val))
-    });
+        if (val?.length)
+            localStorage.setItem('originalComment', JSON.stringify(val))
+    }, [val]);
     //This submits the forms
     const handleSubmit = (e) => {
         e.preventDefault()
         getContents()
+        setValue('')
         setEdit(false)
     }
     //This is used to add scores from the user scores
