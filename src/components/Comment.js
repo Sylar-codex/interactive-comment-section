@@ -90,17 +90,19 @@ function Comment(props) {
   };
 
   //A function which has a parameter of id being passed from the onclick button of the edit
-  const onEdit = (id) => {
+  const onEdit = (id, subId, replyTo) => {
     const Result = val.filter((cont) => {
       return cont.id !== id;
     });
     const selectItem = val.find((item) => {
       return item.id === id;
     });
-    console.log(Result);
     setValue(selectItem.Content);
     setEdit(true);
     setVal(Result);
+    setId(subId);
+    setUsername(replyTo);
+    localStorage.setItem("originalComment", JSON.stringify(Result));
   };
   return (
     <div>
@@ -295,7 +297,7 @@ function Comment(props) {
                             </div>
                             <div
                               onClick={() => {
-                                onEdit(cont.id);
+                                onEdit(cont.id, cont.subId, cont.replyTo);
                               }}
                               className="flex"
                             >

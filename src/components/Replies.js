@@ -93,7 +93,7 @@ function Replies(props) {
     setValue(e.target.value);
   };
   //A function which has a parameter of id being passed from the onclick button of the edit
-  const onEdit = (id) => {
+  const onEdit = (id, subId, replyTo) => {
     const Result = val.filter((cont) => {
       return cont.id !== id;
     });
@@ -103,7 +103,9 @@ function Replies(props) {
     setValue(selectItem.Content);
     setEdit(true);
     setVal(Result);
-    console.log(Result);
+    setId(subId);
+    setUsername(replyTo);
+    localStorage.setItem("originalComment", JSON.stringify(Result));
   };
 
   return (
@@ -296,7 +298,7 @@ function Replies(props) {
                             </div>
                             <div
                               onClick={() => {
-                                onEdit(cont.id);
+                                onEdit(cont.id, cont.subId, cont.replyTo);
                               }}
                               className="flex"
                             >
