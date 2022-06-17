@@ -20,6 +20,7 @@ function Comment(props) {
   const [edit, setEdit] = useState(false);
   const [Value, setValue] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [username, setUsername] = useState("");
 
   // This function increases the score of the reply which was originally there before the user used the platform
   const addition = () => {
@@ -32,27 +33,25 @@ function Comment(props) {
   };
 
   //This function makes it possible to show the user's reply form
-  const onReply = (id) => {
+  const onReply = (id, replyTo) => {
     setReply((R) => (R = !R));
     setId(id);
-
-    console.log("my", id);
+    setUsername(replyTo);
   };
   //a function which gets all the contents to be submitted
   const getContents = () => {
     const comment = {
       id: uuid.v4(),
+      subId: id,
       Content: Value,
       image: content.currentUser.image.png,
       username: content.currentUser.username,
-      replyTo: id,
+      replyTo: username,
       time: moment().startOf("hour").fromNow(),
     };
     const merge = [...val, comment];
-    console.log("New: ", merge);
     localStorage.setItem("originalComment", JSON.stringify(merge));
     setVal(merge);
-    console.log("Successfull");
   };
 
   //Whenever the user reloads the page he can still view his replies or comment
@@ -67,6 +66,7 @@ function Comment(props) {
     getContents();
     setValue("");
     setEdit(false);
+    setReply(false);
   };
   //This is used to add scores from the user scores
   const addition1 = () => {
@@ -99,7 +99,6 @@ function Comment(props) {
     console.log(Result);
     setValue(selectItem.Content);
     setEdit(true);
-    setId(id);
     setVal(Result);
   };
   return (
@@ -155,7 +154,7 @@ function Comment(props) {
               </div>
               <div
                 onClick={() => {
-                  onReply(props.id);
+                  onReply(props.id, props.username);
                 }}
                 className="flex desktop:ml-0 desktop:mb-0 desktop:mt-0 mobile:ml-60 mobile:-mb-12 mobile:mt-10 hover:cursor-pointer"
               >
@@ -216,10 +215,9 @@ function Comment(props) {
           <div>
             {val.map(
               (cont) =>
-                cont.replyTo === props.id && (
+                cont.subId === props.id && (
                   <div key={cont.id}>
                     {" "}
-                    {console.log("reply: ", val)}
                     <div className="align-middle bg-white mt-6 p-6 flex desktop:flex-row mobile:flex-col-reverse rounded-md desktop:mx-44 desktop:ml-64 mobile:ml-9 desktop:mr-64 mobile:mx-5 mobile:mr-4">
                       <div className="bg-light-grayish-blue desktop:mt-0 mobile:mt-4 desktop:w-10 desktop:h-24 mobile:w-24 mobile:h-10 align-middle flex desktop:flex-col mobile:flex-row justify-center px-3 pr-5 py-3 rounded-md">
                         <div
@@ -269,6 +267,9 @@ function Comment(props) {
                             </div>
                             <div className="mt-5">
                               <p className="desktop:text-xl mobile:text-md">
+                                <span className="font-bold text-moderate-blue">
+                                  @{cont.replyTo}
+                                </span>{" "}
                                 {cont.Content}
                               </p>
                             </div>
