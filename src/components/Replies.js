@@ -85,8 +85,8 @@ function Replies(props) {
     const Result = val.filter((cont) => {
       return cont.id !== id;
     });
-    console.log(Result);
     setVal(Result);
+    localStorage.setItem("originalComment", JSON.stringify(Result));
   };
 
   const handleChange = (e) => {

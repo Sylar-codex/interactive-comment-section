@@ -82,6 +82,7 @@ function Comment(props) {
       return cont.id !== id;
     });
     setVal(Result);
+    localStorage.setItem("originalComment", JSON.stringify(Result));
   };
 
   const handleChange = (e) => {
