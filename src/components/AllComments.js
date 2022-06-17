@@ -6,7 +6,7 @@ function Allcomments() {
   return (
     <div>
       {contents.comments.map((comment, index) => (
-        <div>
+        <div key={comment.id}>
           <Comment
             key={comment.id}
             id={comment.id}
